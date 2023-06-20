@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BusInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.po.BusInfo">
+        <id column="id" property="id" />
+        <result column="itemId" property="itemId" />
+        <result column="useUnit" property="useUnit" />
+        <result column="sealInfo" property="sealInfo" />
+        <result column="unit" property="unit" />
+        <result column="unitType" property="unitType" />
+        <result column="cloudTime" property="cloudTime" />
+        <result column="busSystem" property="busSystem" />
+        <result column="busHandle" property="busHandle" />
+        <result column="handleTel" property="handleTel" />
+        <result column="busUnit" property="busUnit" />
+        <result column="isUse" property="isUse" />
+        <result column="dr" property="dr" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+</mapper>

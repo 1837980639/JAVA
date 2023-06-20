@@ -1,0 +1,81 @@
+<!--引入样式-->
+<link rel="stylesheet" href="plugin/layui/layui.css">
+<script src="plugin/layui/layui.js" charset="utf-8"></script>
+
+<link rel="stylesheet" href="plugin/layui/formSelects-v4.css">
+<script src="plugin/layui/formSelects-v4.js"></script>
+
+<!--前端渲染页面-->
+<div ng-controller="bushistoryCtl" class="layui-row">
+    <div class="layui-col-xs12">
+        <script type="text/html" id="toolbarnew">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                <button  class="layui-btn  layui-btn-sm layui-btn-danger" lay-event="delete">批量删除</button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="new" lay-filter="tableFilter"></table>
+
+    </div>
+</div>
+
+
+<script>
+    app.register.controller('bushistoryCtl', function ($localStorage, $scope, $http, $rootScope, $confirm) {
+        layui.use('table', function(){
+            var table = layui.table;
+            var laydate = layui.laydate;
+            const form = layui.form;
+            //第一个实例
+            table.render({
+                elem: '#new'
+                ,height: 'full'
+                ,url: $rootScope.project + "api/ops/busInfoHistory/get.do" //数据接口
+                ,page: true //开启分页
+                ,even:true
+                ,cellMinWidth: 100
+                ,defaultToolbar: ['filter', 'exports', 'print']//头部工具栏
+                ,cols: [[ //表头
+                    {field: 'historyId', title: 'ID', sort: true, fixed: 'left'},
+                    {field: 'busInfoId', title: 'busInfoId', sort: true, fixed: 'left'}
+                    ,{field: 'itemId', title: '项目编号', sort: true, fixed: 'left',sort: true}
+                    ,{field: 'useUnit', title: '使用单位',width:230,sort: true}
+                    ,{field: 'sealInfo', title: '盖章信息', sort: true,width:280}
+                    ,{field: 'unit', title: '最新单位',width:250,sort: true}
+                    ,{field: 'unitType', title: '类型',sort: true}
+                    ,{field: 'cloudTime', title: '入云时间', sort: true,width:180}
+                    ,{field: 'busSystem', title: '业务系统', sort: true,width:400}
+                    ,{field: 'busHandle', title: '业务经办',sort: true}
+                    ,{field: 'handleTel', title: '联系方式', sort: true,width:130}
+                    ,{field: 'busUnit', title: '业务技术支撑单位', sort: true,width:250}
+                    ,{field: 'isUse', title: '是否在用', sort: true}
+                    ,{field: 'isDelete', title: '是否删除', sort: true}
+                ]]
+            });
+
+        });
+    });
+</script>
+
+<!--css-->
+<style>
+    .layui-col-xs12 {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 10px 12px 10px 10px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0;
+        margin-top: 10px;
+    }
+
+    .layui-form-label {
+        width: 100px;
+    }
+
+    .layui-input-block {
+        margin-left: 105px;
+    }
+</style>

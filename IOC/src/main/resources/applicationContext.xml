@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    1.强制依赖使用构造器进行 ,使用setter注入有概率不进行注入导致nu11对象出现-->
+<!--    2.可选依赖使用setter注入进行,灵活性强-->
+<!--    3. Spring框架倡 导使用构造器, 第三方框架内部大多数采用构造器注入的形式进行数据初始化,相对严谨-->
+<!--    4.如果有必要可以两者同时使用,使用构造器注入完成强制依赖的注入,使用setter注入完成可选依赖的注入-->
+<!--    5.实际开发过程中还要根据实际情况分析,如果受控对象没有提供setter方法就必须使用构造器注入-->
+<!--    6.自己开发时推荐使用setter注入-->
+
+
+
+
+    <!--配置bean    -->
+        <!--bean标签表示配置bean-->
+        <!--id属性表示给bean取名字-->
+        <!--class属性表示给bean定类型
+                name属性表示bean的别名
+                scope属性表示bean的作用范围-->
+    <bean id="bookDao" name="service" class="com.example.dao.impl.BookDaoImpl" scope="prototype" init-method="init" destroy-method="destroy" />
+
+    <!-- 常规分配-->
+    <bean id="bookSerbice" class="com.example.service.impl.BookSerbiceImpl">
+        <!-- 配置server与dao的关系-->
+        <!-- property标签标识配置当前bean的属性-->
+        <!-- name属性表示配置哪一个具体的属性-->
+        <!-- ref属性表示参照哪一个bean-->
+            <property name="bookDao" ref="bookDao"/>
+        <!--引用常规值-->
+            <property name="connnum" value="10"/>
+            <property name="sqlname" value="mysql"/>
+
+        <!--通过构造函数的方法 其中的name是构造函数当中的形参-->
+            <constructor-arg name="bookDao1" ref="bookDao"/>
+            <constructor-arg name="connnum1" value="10"/>
+            <constructor-arg name="sqlname1" value="mysql"/>
+
+        <!--俩个特殊写法-->
+            <!--通过位置来决定值-->
+                <!--<constructor-arg index="0" value="mysql"/>-->
+                <!--<constructor-arg index="1" value="10"/>-->
+            <!--通过类型来决定值-->
+                <!--<constructor-arg type="java.lang.String" value="mysql"/>-->
+                <!--<constructor-arg type="int" value="10"/>-->
+    </bean>
+    <!-- 自动分配（优先级不如property）-->
+        <!-- 按类型分配-->
+            <!--<bean id="bookserviceauto" class="com.example.service.impl.Bookserviceauto" autowire="byType"/>-->
+        <!-- 按名称分配-->
+            <!--<bean id="bookserviceauto" class="com.example.service.impl.Bookserviceauto" autowire="byName"/>-->
+
+
+    <!--    数组、数列等-->
+    <bean id="arrayItem" class="com.example.array.impl.ArrayItem">
+        <!--        数组-->
+        <property name="array">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+        <!--        列表-->
+        <property name="list">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </array>
+        </property>
+        <property name="set">
+            <set>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="country" value="china"/>
+                <entry key="province" value="fujian"/>
+                <entry key="city" value="fuzhou"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="country">china</prop>
+                <prop key="province">fujian</prop>
+                <prop key="city">fuzhou</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

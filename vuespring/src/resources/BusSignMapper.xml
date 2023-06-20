@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BusSignMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.po.BusSign">
+        <id column="id" property="id" />
+        <result column="itemId" property="itemId" />
+        <result column="useUnit" property="useUnit" />
+        <result column="busSystem" property="busSystem" />
+        <result column="platfrom" property="platfrom" />
+        <result column="applyTime" property="applyTime" />
+        <result column="openTime" property="openTime" />
+        <result column="isUnitSign" property="isUnitSign" />
+        <result column="isUnitSeal" property="isUnitSeal" />
+        <result column="isHandleSign" property="isHandleSign" />
+        <result column="isLeaderSign" property="isLeaderSign" />
+        <result column="isEaabSeal" property="isEaabSeal" />
+        <result column="isBill" property="isBill" />
+        <result column="progress" property="progress" />
+        <result column="remark" property="remark" />
+        <result column="year" property="year" />
+        <result column="dr" property="dr" />
+    </resultMap>
+
+</mapper>

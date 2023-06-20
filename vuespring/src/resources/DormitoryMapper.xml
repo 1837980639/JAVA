@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DormitoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.po.Dormitory">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="leader" property="leader" />
+        <result column="max_number" property="maxNumber" />
+        <result column="left_number" property="leftNumber" />
+        <result column="live_number" property="liveNumber" />
+        <result column="status" property="status" />
+        <result column="comment" property="comment" />
+        <result column="school" property="school" />
+        <result column="type" property="type" />
+        <result column="building" property="building" />
+    </resultMap>
+
+</mapper>

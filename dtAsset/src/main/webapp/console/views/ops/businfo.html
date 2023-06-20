@@ -1,0 +1,299 @@
+<!--引入样式-->
+<link rel="stylesheet" href="plugin/layui/layui.css">
+<script src="plugin/layui/layui.js" charset="utf-8"></script>
+
+<link rel="stylesheet" href="plugin/layui/formSelects-v4.css">
+<script src="plugin/layui/formSelects-v4.js"></script>
+
+<!--前端渲染页面-->
+<div ng-controller="busCtl" class="layui-row">
+<!--    查询页面-->
+<!--    <div class="layui-col-xs12">-->
+<!--        <div class="layui-inline">-->
+<!--            <input class="layui-input" autocomplete="off" style="height: 30px" id="searchVal">-->
+<!--        </div>-->
+<!--        <button class="layui-btn layui-btn-sm" data-type="reload" id="search_btn">查询数据</button>-->
+<!--    </div>-->
+<!--    表头按钮 -->
+    <div class="layui-col-xs12">
+        <script type="text/html" id="toolbarnew">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+                <button  class="layui-btn  layui-btn-sm layui-btn-danger" lay-event="delete">批量删除</button>
+            </div>
+        </script>
+        <!--    操作按钮 -->
+            <script type="text/html" id="toolbtnnew">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="update">修改</button>
+                    <button type="button" class="layui-btn  layui-btn-sm layui-btn-danger" lay-event="del">删除</button>
+                </div>
+            </script>
+        <table class="layui-hide" id="new" lay-filter="tableFilter"></table>
+
+        <!-- 表单 -->
+        <div style="margin: 25px; display: none" id="detailForm">
+            <form class="layui-form" lay-filter="detail" id="form_info">
+                <input type="text" name="busInfoId" style="display: none" autocomplete="off" class="layui-input"/>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span style="color:red;">*</span>项目编号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="itemId" required lay-verify="required" placeholder="请输入项目编号"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">是否在用</label>
+                        <div class="layui-input-block">
+                            <select name="isUse"  lay-search>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="color:red;">*</span>业务系统</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busSystem" required lay-verify="required" placeholder="请输入输入应用名称"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="color:red;">*</span>使用单位</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="useUnit" required lay-verify="required" placeholder="请输入使用单位"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span style="color:red;">*</span>盖章信息</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sealInfo" required lay-verify="required" placeholder="请输入盖章信息"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span style="color:red;">*</span>最近单位</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="unit" class="layui-input" required lay-verify="required"
+                                   id="occurrence" placeholder="请输入单位">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span style="color:red;">*</span>类型</label>
+                        <div class="layui-input-block">
+                            <select required lay-verify="required" name="unitType" lay-search>
+                                <option value="区属单位">区属单位</option>
+                                <option value="国企">国企</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">业务经办</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="busHandle" class="layui-input"
+                                    placeholder="请输入经办人">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">联系方式</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="handleTel" class="layui-input"
+                                   placeholder="请输入经办人联系方式">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span style="color:red;">*</span>入云时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="cloudTime" lay-verify="required" class="layui-input" id="dateScope" placeholder="yyyy-MM-dd">
+                            </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">业务技术支撑单位</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busUnit"  placeholder="请输入业务技术支撑单位"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="remark" placeholder="请输入事件描述内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-inline" style="display: none">
+                    <label class="layui-form-label">是否删除</label>
+                    <div class="layui-input-block">
+                        <select name="isDelete"  lay-search>
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="float: right">
+                    <div class="layui-input-block">
+                        <button type="reset" class="layui-btn layui-btn-primary" style="height: 30px;line-height: 30px;padding: 0 10px;font-size: 12px;" id="reset">重置表单
+                        </button>
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="submitBtn" style="height: 30px;line-height: 30px;padding: 0 10px;font-size: 12px;">确定提交
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.register.controller('busCtl', function ($localStorage, $scope, $http, $rootScope, $confirm) {
+        layui.use('table', function(){
+            var table = layui.table;
+            var laydate = layui.laydate;
+            const form = layui.form;
+            //第一个实例
+            table.render({
+                elem: '#new'
+                ,height: 'full'
+                ,url: $rootScope.project + "api/ops/busInfo/getall.do" //数据接口
+                ,page: true //开启分页
+                ,even:true
+                ,toolbar:'#toolbarnew'
+                ,cellMinWidth: 100
+                ,defaultToolbar: ['filter', 'exports', 'print']//头部工具栏
+                ,cols: [[ //表头
+                     {type:'checkbox',fixed: 'left'}
+                    ,{field: 'busInfoId', title: 'id', sort: true, fixed: 'left'}
+                    ,{field: 'itemId', title: '项目编号', sort: true}
+                    ,{field: 'useUnit', title: '使用单位',width:230}
+                    ,{field: 'sealInfo', title: '盖章信息', sort: true,width:280}
+                    ,{field: 'unit', title: '最新单位',width:250}
+                    ,{field: 'unitType', title: '类型'}
+                    ,{field: 'cloudTime', title: '入云时间', sort: true,width:180}
+                    ,{field: 'busSystem', title: '业务系统', sort: true,width:400}
+                    ,{field: 'busHandle', title: '业务经办'}
+                    ,{field: 'handleTel', title: '联系方式', sort: true,width:130}
+                    ,{field: 'busUnit', title: '业务技术支撑单位', sort: true,width:250}
+                    ,{field: 'isUse', title: '是否再用', sort: true}
+                    ,{field: 'isDelete', title: '是否删除', sort: true, hide:true}//需要传参，但是不修改
+                    ,{field: '', title: '操作', toolbar:'#toolbtnnew', fixed: 'right',width: 140}
+                ]]
+            });
+
+            // 表头监控
+            table.on('toolbar(tableFilter)', function (obj) {
+                const checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'add':
+                        openDetail()
+                        break;
+                    case 'delete':
+                        const ids = [];
+                        const datas=[];
+                        checkStatus.data.forEach(item => {
+                            ids.push(item.busInfoId);
+                            datas.push(item)
+                        });
+                        console.log(datas)
+                        if (ids.length > 0) {
+                            $confirm({text: '是否删除?'}).then(function () {
+                                $http.post($rootScope.project + "api/ops/busInfo/deleteById.do", {ids:ids.join(),data:{}},{
+                                    headers : {'Authorization' : '123'}
+                                }).success(function () {
+                                    table.reload('new', {
+                                        url: $rootScope.project + 'api/ops/busInfo/getall.do'
+                                    });
+                                });
+                                console.log('')
+                            });
+                        } else {
+                            layer.msg('请先选择一行再进行操作');
+                        }
+                        break;
+                }
+            });
+            // 表中监控
+            table.on('tool(tableFilter)', function (obj) {
+                const data = obj.data;
+                console.log(data)
+                if (obj.event === 'del') {
+                    console.log(data)
+                    layer.confirm('真的删除行么', function (index) {
+                        $http.post($rootScope.project + "api/ops/busInfo/deleteById.do", {ids:data.busInfoId}).success(function () {
+                            table.reload('new', {
+                                url: $rootScope.project + 'api/ops/busInfo/getall.do'
+                            });
+                        });
+                        layer.close(index)
+                    });
+                } else if (obj.event === 'update') {
+                    openDetail(data);
+                }
+            });
+            // 日期选择
+            laydate.render({
+                elem: '#dateScope'
+            });
+            function openDetail(data) {
+                //页面层
+                const viewObj = {
+                    type: 1
+                    , skin: 'layui-layer-molv'
+                    , area: ['1080px', '680px']
+                    , title: ['新增运维信息', 'font-size:14px']
+                    , shadeClose: true
+                    , shade: 0
+                    , maxmin: true
+                    , content: $("#detailForm")
+                    , success: function () {
+                        // 查询用户信息
+                        form.val('detail', data);
+                    }
+                    ,  end : function() {
+                        $('#reset').click();
+                        form.val('detail', {});
+                    }
+                }
+                layer.open(viewObj);
+            }
+            // 表单提交
+            form.on('submit(submitBtn)', function (data) {
+                console.log(data.field)
+                $http.post($rootScope.project + "api/ops/busInfo/submit.do", data.field).success(function (res) {
+                    window.location.reload();
+                });
+                return false;
+            });
+        });
+    });
+</script>
+
+<!--css-->
+<style>
+    .layui-col-xs12 {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 10px 12px 10px 10px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0;
+        margin-top: 10px;
+    }
+
+    .layui-form-label {
+        width: 100px;
+    }
+
+    .layui-input-block {
+        margin-left: 105px;
+    }
+</style>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DepartmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.po.Department">
+        <id column="id" property="id" />
+        <result column="depart_name" property="departName" />
+        <result column="depart_code" property="departCode" />
+        <result column="depart_desc" property="departDesc" />
+        <result column="school_id" property="schoolId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="depart_type" property="departType" />
+        <result column="deleted" property="deleted" />
+    </resultMap>
+
+</mapper>

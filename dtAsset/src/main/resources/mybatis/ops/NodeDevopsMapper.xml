@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dt.module.ops.mapper.NodeDevopsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="nodeDevopsResultMap" type="com.dt.module.ops.entity.NodeDevops">
+        <id column="id" property="id"/>
+        <result column="app_name" property="appName"/>
+        <result column="platform" property="platform"/>
+        <result column="category" property="category"/>
+        <result column="event_source" property="eventSource"/>
+        <result column="claimant" property="claimant"/>
+        <result column="event_description" property="eventDescription"/>
+        <result column="creation_time" property="creationTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="treatment_process" property="treatmentProcess"/>
+        <result column="processing_personnel" property="processingPersonnel"/>
+        <result column="processing_results" property="processingResults"/>
+        <result column="is_report" property="isReport"/>
+        <result column="occurrence" property="occurrence"/>
+        <result column="bz" property="bz"/>
+    </resultMap>
+
+</mapper>
