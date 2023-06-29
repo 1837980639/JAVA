@@ -41,7 +41,7 @@ public class serveMain {
                 //打印文件列表：只读取名称使用getName();
                 sheetArr = readExcl.readHead(file2.getPath());
                 sqlData = sqlCreate.oracle_head_ps(tableName, sheetArr, startLength);
-                startLength = sheetArr.length;
+                startLength += sheetArr.length;
                 createTxt = new create_txt(sqlData);
                 createTxt.create_txt_string(true);//修改模式为文本追加
             }
