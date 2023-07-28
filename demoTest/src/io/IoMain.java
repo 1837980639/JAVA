@@ -52,7 +52,7 @@ public class IoMain {
     }
     // 缓冲字节复制
     public static void copyFile() throws Exception{
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt"));
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\copy.txt"));
 
         byte[] b = new byte[1024];
