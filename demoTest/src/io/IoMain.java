@@ -32,6 +32,7 @@ public class IoMain {
         in.close();
 
     }
+    //缓冲字节输出流
     public static void testBufferOutStream() throws Exception{
         // 创建字节输出对象
         FileOutputStream out = new FileOutputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test2.txt");
@@ -49,21 +50,21 @@ public class IoMain {
         bufferedOutputStream.close();
         out.close();
     }
-
+    // 缓冲字节复制
     public static void copyFile() throws Exception{
-        FileInputStream in = new FileInputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
-        FileOutputStream out = new FileOutputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\copy.txt");
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\copy.txt"));
 
         byte[] b = new byte[1024];
 
         int len = 0;
-        while ((len = in.read(b)) != -1){
-            out.write(b,0,len);
+        while ((len = bufferedInputStream.read(b)) != -1){
+            bufferedOutputStream.write(b,0,len);
         }
 
-        out.flush();
+        bufferedOutputStream.flush();
 
-        out.close();
-        in.close();
+        bufferedOutputStream.close();
+        bufferedInputStream.close();
     }
 }
