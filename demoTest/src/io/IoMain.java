@@ -23,6 +23,9 @@ public class IoMain {
         //转换流（字节转字符） 输入流
         InputStreamReader fs = new InputStreamReader(in,"GBK");
 
+        //接收键盘的输入流（标准输入流）
+        InputStreamReader jp = new InputStreamReader(System.in);
+
         //缓冲字节输入流
         BufferedInputStream br = new BufferedInputStream(in);
         byte[] b = new byte[10];
@@ -32,6 +35,9 @@ public class IoMain {
         }
         //关闭流的时候，最晚开的时候最早关，依次关
         br.close();
+        jp.close();
+        fs.close();
+        Fr.close();
         in.close();
 
     }
@@ -57,6 +63,8 @@ public class IoMain {
 
         //关闭流
         bufferedOutputStream.close();
+        fS.close();
+        Fw.close();
         out.close();
     }
     // 缓冲字节复制
