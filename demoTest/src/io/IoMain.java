@@ -20,6 +20,9 @@ public class IoMain {
         //文件字符输入流（未使用，效果一样）
         FileReader Fr = new FileReader("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
 
+        //转换流（字节转字符） 输入流
+        InputStreamReader fs = new InputStreamReader(in,"GBK");
+
         //缓冲字节输入流
         BufferedInputStream br = new BufferedInputStream(in);
         byte[] b = new byte[10];
@@ -39,6 +42,9 @@ public class IoMain {
 
         //文件字符输出流（未使用，效果一样）
         FileWriter Fw = new FileWriter("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test2.txt");
+
+        //转换流 字节转字符输出流
+        OutputStreamWriter fS = new OutputStreamWriter(out,"GBK");
 
         //把字节输出流对象放入缓冲字节输出流中
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(out);
