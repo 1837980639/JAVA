@@ -1,9 +1,6 @@
 package io;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 public class IoMain {
     public static void main(String[] args) {
@@ -19,6 +16,9 @@ public class IoMain {
     public static void testBufferInputStream() throws Exception{
         // 文件字节输入流对象
         FileInputStream in = new FileInputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
+
+        //文件字符输入流（未使用，效果一样）
+        FileReader Fr = new FileReader("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt");
 
         //缓冲字节输入流
         BufferedInputStream br = new BufferedInputStream(in);
@@ -36,6 +36,9 @@ public class IoMain {
     public static void testBufferOutStream() throws Exception{
         // 创建字节输出对象
         FileOutputStream out = new FileOutputStream("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test2.txt");
+
+        //文件字符输出流（未使用，效果一样）
+        FileWriter Fw = new FileWriter("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test2.txt");
 
         //把字节输出流对象放入缓冲字节输出流中
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(out);
