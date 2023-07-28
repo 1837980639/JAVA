@@ -1,6 +1,8 @@
 package io;
 
 import java.io.*;
+import java.util.Random;
+import java.util.RandomAccess;
 
 public class IoMain {
     public static void main(String[] args) {
@@ -8,6 +10,8 @@ public class IoMain {
             testBufferInputStream();
             testBufferOutStream();
             copyFile();
+            testRomAccessFile();
+            testRomAccessFileWrite();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -83,5 +87,40 @@ public class IoMain {
 
         bufferedOutputStream.close();
         bufferedInputStream.close();
+    }
+
+    // 随机读
+    public static void testRomAccessFile() throws Exception{
+        //RandomAccessFile的构造有两个参数，参数1定读写的文件的路径
+        //参数2是指定RandomAccessFile 的访问模式
+        //r: 以只读方式打开
+        //rw:打开以便读取和写入
+        //rwd:打开以便读取和写入;同步文件内容的更新
+        //RWS：;打开以便读取和写入;同步文件内容和元数据的更新
+        //最常用是r和rw
+
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt","r");
+        //设置读取文件内容起始点
+        randomAccessFile.seek(0);
+
+        byte[] b = new byte[10];
+        int len = 0;
+        while ((len = randomAccessFile.read(b)) != -1){
+            System.out.println(new String(b,0,len));
+        }
+
+        randomAccessFile.close();
+    }
+    // 随机写
+    public static void testRomAccessFileWrite() throws Exception{
+
+        RandomAccessFile randomAccessWriteFile = new RandomAccessFile("D:\\AHomeWrok\\JAVA\\demoTest\\src\\io\\test.txt","rw");
+        //设置写文件内容起始点
+//        randomAccessWriteFile.seek(0);// 覆盖
+        randomAccessWriteFile.seek(randomAccessWriteFile.length());// 追加
+
+        randomAccessWriteFile.write("随机写".getBytes());
+
+        randomAccessWriteFile.close();
     }
 }
