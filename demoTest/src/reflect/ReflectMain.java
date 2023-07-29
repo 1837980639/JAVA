@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class Main {
+public class ReflectMain {
     public static void main(String[] args) {
         /*
             获取类
@@ -73,14 +73,15 @@ public class Main {
             setAccessible(接触私有封装,方法属性构造方法都可以)
          */
         try {
-            Object obj = clazz.newInstance();// 相当于调用公有的无参构造方法
+            Class StudentClazz = Student.class;
+            Object obj = StudentClazz.newInstance();// 相当于调用公有的无参构造方法
             Student student = (Student) obj;
 
-            Constructor constructor1 = clazz.getConstructor(String.class);// 指定获取有一个参数并且类型有String的公有构造函数
+            Constructor constructor1 = StudentClazz.getConstructor(String.class);// 指定获取有一个参数并且类型有String的公有构造函数
             Student student1 = (Student) constructor1.newInstance("第一中学");
             System.out.println(student1.school);
 
-            Constructor constructor3 =clazz.getDeclaredConstructor(String.class,int.class);// 指定获取俩个参数并且类型有String,int的构造函数
+            Constructor constructor3 =StudentClazz.getDeclaredConstructor(String.class,int.class);// 指定获取俩个参数并且类型有String,int的构造函数
             constructor3.setAccessible(true);// 解除私有封装，强制调用私有构造方法
             Student student2 = (Student) constructor3.newInstance("张三",12);
         } catch (InstantiationException e) {
