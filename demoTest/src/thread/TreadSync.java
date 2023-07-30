@@ -147,7 +147,7 @@ class AcountSyncStatic{
  */
 class AcountSyncCode{
     public static  int money = 3000;
-    public  synchronized void drawing(int m){
+    public  void drawing(int m){
         synchronized (this){
             String name = Thread.currentThread().getName();
             if(money < m){
@@ -202,6 +202,34 @@ class AcountSyncCode{
     }
 }
 
+/**
+ * 线程优先级、线程的通信
+ */
+class Acountss{
+    public static  int money = 3000;
+    public  void drawing(int m,Acount acount) throws InterruptedException {
+        synchronized (this){
+            String name = Thread.currentThread().getName();
+            if(name == "微信"){
+                acount.wait(); //先阻塞，让优先级更高的先操作
+            }
+            if(money < m){
+                System.out.println(name + "操作，金额不足" + money);
+            }else {
+                System.out.println(name+"账户原有金额:" + money);
+                System.out.println(name+"取款金额:" + m);
+                money -=m;
+                System.out.println(name+"取款后余额：" + money);
+            }
+
+            if(name == "支付宝"){
+                acount.notify(); //唤醒，执行优先级高的线程（因为阻塞了，所以优先级最高的是支付宝）
+//                acount.notifyAll(); //唤醒所有线程（因为阻塞了，所以优先级最高的是支付宝）
+            }
+        }
+
+    }
+}
 class User implements Runnable{
     Acount acount;
     AcountSync acountSync;
