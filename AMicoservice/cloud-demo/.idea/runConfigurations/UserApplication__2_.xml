@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UserApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="user-service" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="cn.itcast.user.UserApplication" />
+    <option name="VM_PARAMETERS" value="-Dserver.port=8083" />
+    <extension name="coverage" track_test_folders="true" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
